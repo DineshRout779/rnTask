@@ -10,8 +10,16 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.5",
+    "@react-navigation/bottom-tabs": "^6.5.16",
+    "@react-navigation/material-top-tabs": "^6.6.10",
+    "@react-navigation/native": "^6.1.14",
+    "graphql": "^16.8.1",
     "react": "18.2.0",
-    "react-native": "0.73.5"
+    "react-native": "0.73.5",
+    "react-native-dotenv": "^3.4.11",
+    "react-native-pager-view": "^6.2.3",
+    "react-native-tab-view": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

@@ -1,16 +1,19 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import FlatCards from './src/components/FlatCards';
+import MyTabs from './src/components/MyTabs';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={styles.container}>
+    <>
+      <View style={styles.container}>
+        <ScrollView>
           <FlatCards />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+        </ScrollView>
+      </View>
+      <MyTabs />
+    </>
   );
 }
 
