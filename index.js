@@ -10,6 +10,7 @@ import {
 } from '@apollo/client';
 import {NavigationContainer} from '@react-navigation/native';
 import {REACT_APP_TOKEN} from '@env';
+import AppContextProvider from './src/context/AppContext';
 
 const token = REACT_APP_TOKEN;
 const uri = 'https://api.github.com/graphql';
@@ -21,9 +22,11 @@ export const client = new ApolloClient({cache, link});
 const RootApp = () => {
   return (
     <ApolloProvider client={client}>
-      <NavigationContainer>
-        <App />
-      </NavigationContainer>
+      <AppContextProvider>
+        <NavigationContainer>
+          <App />
+        </NavigationContainer>
+      </AppContextProvider>
     </ApolloProvider>
   );
 };
