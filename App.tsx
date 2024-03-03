@@ -17,7 +17,7 @@ function App(): React.JSX.Element {
         <Home />
         {/* </ScrollView> */}
       </View>
-      {userData && <MyTabs />}
+      {userData ? <MyTabs /> : null}
     </>
   );
 }

@@ -13,6 +13,11 @@ const reducers = (state, action) => {
         ...state,
         userData: action.payload,
       };
+    case 'REMOVE_USER_DATA':
+      return {
+        ...state,
+        userData: null,
+      };
     default:
       return state;
   }
@@ -28,8 +33,14 @@ const AppContextProvider = ({children}) => {
     });
   };
 
+  const removeUser = () => {
+    dispatch({
+      type: 'REMOVE_USER_DATA',
+    });
+  };
+
   return (
-    <AppContext.Provider value={{state, storeUser}}>
+    <AppContext.Provider value={{state, storeUser, removeUser}}>
       {children}
     </AppContext.Provider>
   );

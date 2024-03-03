@@ -4,6 +4,7 @@
 import React, {useState} from 'react';
 import {
   View,
+  KeyboardAvoidingView,
   Text,
   StyleSheet,
   TextInput,
@@ -14,12 +15,14 @@ import {GET_USER} from '../services/getUser';
 import {useApp} from '../hooks/useApp';
 
 const Home = () => {
-  const {storeUser} = useApp();
+  const {storeUser, removeUser} = useApp();
   const [query, setquery] = useState('Dineshrout779');
   const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
   const fetchUser = async (username: string) => {
+    removeUser();
+    setError('');
     setLoading(true);
     try {
       const {data} = await client.query({
@@ -32,6 +35,7 @@ const Home = () => {
     } catch (error) {
       console.log(error.message);
       setError(error.message);
+      removeUser();
     } finally {
       setLoading(false);
     }
@@ -41,7 +45,7 @@ const Home = () => {
     <View>
       <Text style={styles.headingText}>Github Users</Text>
 
-      <View style={styles.form}>
+      <KeyboardAvoidingView style={styles.form}>
         <TextInput
           placeholder="Type here to search.."
           style={styles.textInput}
@@ -52,13 +56,21 @@ const Home = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => fetchUser(query)}>
-          <Text style={{fontWeight: 'bold', color: '#fcfcfc'}}>Search</Text>
+          <Text style={{fontWeight: 'bold', color: '#fcfcfc'}}>
+            {loading ? 'Searching' : 'Search'}
+          </Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
 
-      {loading && <Text>Loading...</Text>}
+      {loading && (
+        <Text style={{marginTop: 48, marginHorizontal: 'auto'}}>
+          Loading...
+        </Text>
+      )}
 
-      {error && <Text>{error}</Text>}
+      {error && (
+        <Text style={{marginTop: 48, marginHorizontal: 'auto'}}>{error}</Text>
+      )}
     </View>
   );
 };
