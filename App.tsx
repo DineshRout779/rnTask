@@ -1,26 +1,34 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
-import FlatCards from './src/components/FlatCards';
+import {StyleSheet, View} from 'react-native';
 import MyTabs from './src/components/MyTabs';
+import {useApp} from './src/hooks/useApp';
+import Home from './src/components/Home';
 
 function App(): React.JSX.Element {
+  const {
+    state: {userData},
+  } = useApp();
+
   return (
     <>
       <View style={styles.container}>
-        <ScrollView>
-          <FlatCards />
-        </ScrollView>
+        {/* <ScrollView style={styles.scrollViewStyle}> */}
+        <Home />
+        {/* </ScrollView> */}
       </View>
-      <MyTabs />
+      {userData && <MyTabs />}
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.15,
     padding: 20,
+  },
+  scrollViewStyle: {
+    height: 'auto',
   },
   heading: {
     fontSize: 24,
